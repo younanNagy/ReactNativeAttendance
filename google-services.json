@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "511531055584",
+    "firebase_url": "https://attendancereactnative.firebaseio.com",
+    "project_id": "attendancereactnative",
+    "storage_bucket": "attendancereactnative.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511531055584:android:2a4e2ca61820cee9115385",
+        "android_client_info": {
+          "package_name": "com.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511531055584-l7rf4d2bkcvg7uokolbqp18uprqg6j7v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.test",
+            "certificate_hash": "97ae059c9a28264e196df353d7c00780004972da"
+          }
+        },
+        {
+          "client_id": "511531055584-n1vqh3f55vuuni04n60ns5tcukolgtut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT5FKCiqWxwFDnk9zedEgTlaQrA6wzozI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511531055584-n1vqh3f55vuuni04n60ns5tcukolgtut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

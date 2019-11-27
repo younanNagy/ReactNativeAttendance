@@ -1,0 +1,62 @@
+import React from 'react';
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import * as Google from 'expo-google-app-auth';
+
+//import * as GoogleSignIn from 'expo-google-sign-in';
+
+//import GoogleSheet, {append } from 'react-native-google-sheet';
+//const {google}=require('googleapis');
+//const {keys}=require('./keys.JSON')
+
+
+export default  function App() {
+//Client_secret=S70-1h1APUgQ0eSjrpO8jQhz 
+  //const clientId = '511531055584-d4i13lcubp7v5rh3f560dn4isl9f0sp2.apps.googleusercontent.com';
+  //const GOOGLE_REDIRECT_URI = "http://localhost:19002";
+  const config={
+    androidClientId:'511531055584-d4i13lcubp7v5rh3f560dn4isl9f0sp2.apps.googleusercontent.com',
+    scopes: ['profile', 'email']
+    //redirectUrl:'${AppAuth.OAuthRedirect}:/oauth2redirect/google'
+  };
+  async function signInGoogle_(clientId)
+  {
+    const { type, accessToken, user } = await Google.logInAsync(config);
+    console.log(accessToken,"hiiiiiiiii");
+    return user;
+  }
+  //var resa= signInGoogle_('511531055584-l7rf4d2bkcvg7uokolbqp18uprqg6j7v.apps.googleusercontent.com');
+
+
+  return (
+    <View style={[styles.mainContainer]}>
+    
+      <TouchableOpacity style={styles.button} onPress={signInGoogle_}>
+        <Text>Get Data</Text>
+      </TouchableOpacity>
+    </View>
+  )
+  /*
+  return (
+    <View style={styles.container}>
+      <Text> Hello!</Text>
+    </View>
+  );*/
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button:{
+    marginTop:40
+  }
+})
+//KeyID=88acb25ba49be38f0b5b98ab2f7b87eafcdf5717
+
+//Api key=AIzaSyCNga2uvMQHSk1KMxsFiv8yXLlepV2_NXo 
+
+
+//client id =511531055584-d4i13lcubp7v5rh3f560dn4isl9f0sp2.apps.googleusercontent.com 
