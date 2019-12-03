@@ -2,77 +2,48 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity,AsyncStorage } from 'react-native';
 
-//import GoogleSheet, { batchGet, get, append, update } from 'react-native-google-sheet';
+import GoogleSheet, { update } from 'react-native-google-sheet';
 
 export default function GoogleSpreed() {
-  const clientId = '511531055584-d4i13lcubp7v5rh3f560dn4isl9f0sp2.apps.googleusercontent.com';
-  _retrieveData = async () => {
+  const clientId = '301690263990-25m072eorjt00pu8e888jevu2cv0kum8.apps.googleusercontent.com';
+  async function upload() {
     try {
-      const value = await AsyncStorage.getItem('test');
-      if (value !== null) {
-        // We have data!!
-        console.log(value);
+      let cellName = 'B';
+      let kids_ids=await AsyncStorage.getAllKeys();
+      console.log(kids_ids);
+      let attendance_of_kids=await AsyncStorage.multiGet(kids_ids);
+      console.log(attendance_of_kids);
+
+      for (let [kid_id,Attendance] of attendance_of_kids) 
+      {
+        let response = await update({
+          data: {
+            values: [
+              [Attendance],
+            ],
+            range: `${cellName}${kid_id}`
+          },
+          range: `${cellName}${kid_id}`
+        });
+        let item = await response.json();
+        console.log(item);
       }
-    } catch (error) {
-      // Error retrieving data
+      AsyncStorage.clear();
+   } catch (err) {
+      console.log(err)
+      throw err;
     }
   }
-  // async function _onPressButton() {
-  //   try {
-  //     let cellName = 'A';
-  //     let names = Array.from({ length: 20 }, (_, index) => ({ name: Math.random().toString(36).substring(2), id: index + 1 }));
-  //     for (let { name, id } of names) {
-  //       console.log({ name, id })
-  //       let itemFetch = await update({
-  //         data: {
-  //           values: [
-  //             [name],
-  //           ],
-  //           range: `${cellName}${id}`
-  //         },
-  //         range: `${cellName}${id}`
-  //       });
-  //       console.log(itemFetch);
-  //       let item = await itemFetch.json();
-  //       console.log(item);
-  //     }
-
-  //     ? Fetch Rows
-  //     let itemFetch = await get({ range: 'Sheet2!A1:C2' });
-  //     console.log(itemFetch);
-  //     let item  = await itemFetch.json();
-  //     console.log(item)
-  //     ? Append Row
-  //     let itemFetch = await append({
-  //       data: {
-  //         values: [
-  //           ["123"],
-  //           ["123456789"]
-  //           ["123456789"]
-  //         ],
-  //         range: 'B5'
-  //       },
-  //       range: 'B5'
-  //     });
-  //     console.log(itemFetch);
-  //     let item  = await itemFetch.json();
-  //     console.log(item)
-  
-  //   } catch (err) {
-  //     console.log(err)
-  //     throw err;
-  //   }
-  // }
   return (
     <View>
-      {/* <GoogleSheet
+      <GoogleSheet
         credentialsDetails={{
           clientId,
         }}
-        spreadsheetId="1_k1Kl-elK4oLlcWvQdR_xgavqKe4tIIRlcptIYKn8Jg"
-      /> */}
-      <TouchableOpacity style={styles.button} onPress={_retrieveData}>
-        <Text>Get Data</Text>
+        spreadsheetId="18CQRrVIjoXJuwBULV2zu30Qsr9PXamZfWLn0dajSCpw"
+      />
+      <TouchableOpacity style={styles.button} onPress={upload}>
+        <Text>upload</Text>
       </TouchableOpacity>
     </View>
   )
